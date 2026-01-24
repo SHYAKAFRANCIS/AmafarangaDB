@@ -1,4 +1,4 @@
-# AmafarangaDB
+merging the main branch  AmafarangaDB to commit our database
 Members of Tricode group:
 ### SHYAKA Francis
 ### NGANJI Jospin
