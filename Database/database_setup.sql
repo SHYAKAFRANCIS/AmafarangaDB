@@ -1,4 +1,6 @@
+CREATE DATABASE tricode_db;
 use tricode_db;
+
 CREATE TABLE USERS (
     User_id INT PRIMARY KEY AUTO_INCREMENT,
     Phone_number VARCHAR(20) UNIQUE NOT NULL,
