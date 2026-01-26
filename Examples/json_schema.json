@@ -1,0 +1,134 @@
+{
+  "user": {
+    "User_id": 1,
+    "Phone_number": "+250788123456",
+    "Full_name": "Keza Meghan",
+    "Email": "keza.meg@gmail.com",
+    "Registration_date": "2024-01-15",
+    "Status": "ACTIVE",
+    "Created_at": "2024-01-15T00:00:00Z",
+    "Updated_at": "2024-01-15T00:00:00Z",
+    "transactions_as_sender": [
+      {
+        "Transaction_id": 1,
+        "Sender_id": 1,
+        "Receiver_id": 2,
+        "Amount": 50000.00,
+        "Transaction_type": "2025-01-15T10:30:00Z",
+        "Transaction_status": "COMPLETED",
+        "receiver": {
+          "User_id": 2,
+          "Phone_number": "+250788234567",
+          "Full_name": "Uncle Ben",
+          "Email": "uncle.b@gmail.com"
+        },
+        "category": {
+          "Category_id": 1,
+          "Category_name": "Transfer",
+          "Description": "Money transfer between users"
+        },
+        "fees": [
+          {
+            "transaction_fee_id": 1,
+            "fee_amount": 1000.00,
+            "applied_at": "2025-01-15T10:30:00Z",
+            "fee_type": {
+              "fee_type_id": 1,
+              "type_name": "Processing Fee",
+              "fee_percentage": 2.00,
+              "fixed_amount": 0.00,
+              "min_fee": 100.00,
+              "max_fee": 5000.00,
+              "is_active": true
+            }
+          },
+          {
+            "transaction_fee_id": 2,
+            "fee_amount": 50.00,
+            "applied_at": "2025-01-15T10:30:00Z",
+            "fee_type": {
+              "fee_type_id": 2,
+              "type_name": "Platform Fee",
+              "fee_percentage": 0.00,
+              "fixed_amount": 50.00,
+              "min_fee": 50.00,
+              "max_fee": 50.00,
+              "is_active": true
+            }
+          }
+        ],
+        "system_logs": [
+          {
+            "log_id": 1,
+            "Actor": "Keza Meghan",
+            "Log_time": "2025-01-15T10:30:00Z",
+            "Status_message": "Transaction initiated successfully"
+          },
+          {
+            "log_id": 2,
+            "Actor": "System",
+            "Log_time": "2025-01-15T10:30:05Z",
+            "Status_message": "Payment processed"
+          },
+          {
+            "log_id": 3,
+            "Actor": "System",
+            "Log_time": "2025-01-15T10:30:10Z",
+            "Status_message": "Transaction completed"
+          }
+        ]
+      }
+    ],
+    "transactions_as_receiver": [
+      {
+        "Transaction_id": 4,
+        "Sender_id": 4,
+        "Receiver_id": 1,
+        "Amount": 15000.00,
+        "Transaction_type": "2025-01-18T16:20:00Z",
+        "Transaction_status": "PENDING",
+        "sender": {
+          "User_id": 4,
+          "Phone_number": "+250788456789",
+          "Full_name": "Nganji Jospin",
+          "Email": "Nganji.j@gmail.com"
+        },
+        "category": {
+          "Category_id": 5,
+          "Category_name": "Utility Bill",
+          "Description": "Utility bill payments"
+        },
+        "fees": [
+          {
+            "transaction_fee_id": 4,
+            "fee_amount": 300.00,
+            "applied_at": "2025-01-18T16:20:00Z",
+            "fee_type": {
+              "fee_type_id": 1,
+              "type_name": "Processing Fee",
+              "fee_percentage": 2.00,
+              "fixed_amount": 0.00,
+              "min_fee": 100.00,
+              "max_fee": 5000.00,
+              "is_active": true
+            }
+          }
+        ],
+        "system_logs": [
+          {
+            "log_id": 10,
+            "Actor": "Nganji Jospin",
+            "Log_time": "2025-01-18T16:20:00Z",
+            "Status_message": "Transaction initiated successfully"
+          },
+          {
+            "log_id": 11,
+            "Actor": "System",
+            "Log_time": "2025-01-18T16:20:05Z",
+            "Status_message": "Awaiting payment confirmation"
+          }
+        ]
+      }
+    ]
+  }
+}
