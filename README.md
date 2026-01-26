@@ -1,5 +1,6 @@
 Commiting New Changes To The Main Branch
 AmafarangaDB
+merging the main branch  AmafarangaDB to commit our database
 Members of Tricode group:
 ### SHYAKA Francis
 ### NGANJI Jospin
@@ -12,3 +13,5 @@ Members of Tricode group:
 This is a layered system architecture for AMAFARANGA DATABASE that shows how user uploads and views mobile money data, how the system security process and analyses it through API's and how cleared data is stored and monitored usind cloud infrastructures.
 
 Here is the direct link to our ERD DOCUMENTATION "file:///Users/UncleBenn/Downloads/TRICODE%20DOCUMENTATION.pdf"
+Here is the link to the team sheet that tracks the collaboration on this project : https://docs.google.com/spreadsheets/d/1d29aFPdFMtBbM-EJCDs8hZ7eKXpEAnYeCh0-x03Q8KI/edit?usp=sharing
+
