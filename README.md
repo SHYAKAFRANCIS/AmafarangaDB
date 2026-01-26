@@ -14,5 +14,4 @@ This is a layered system architecture for AMAFARANGA DATABASE that shows how use
 
 Here is the direct link to our ERD DOCUMENTATION (https://github.com/SHYAKAFRANCIS/AmafarangaDB/blob/main/Docs/TRICODE%20DOCUMENTATION.pdf) 
 
-Here is the link to the team sheet that tracks the collaboration on this project : https://docs.google.com/spreadsheets/d/1d29aFPdFMtBbM-EJCDs8hZ7eKXpEAnYeCh0-x03Q8KI/edit?usp=sharing
-
+Here is the link to the team sheet that tracks the collaboration on this project:https://docs.google.com/spreadsheets/d/1Nn7axOub_srAbhR_4dG9ylsXlkstVROlOe4p1SZ70R4/edit?usp=sharing
