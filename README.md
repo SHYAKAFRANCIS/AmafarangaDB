@@ -5,6 +5,7 @@ Members of Tricode group:
 ### SHYAKA Francis
 ### NGANJI Jospin
 ### MWIZERWA Keza Megane  
+### Lea M Abatoni
 
  ####Scrum Board Link ---- https://github.com/users/SHYAKAFRANCIS/projects/2
 
