@@ -12,7 +12,7 @@ def load_transactions(json_file):
 
 
 if __name__ == "__main__":
-    transactions = load_transactions("transactions.json")
+    transactions = load_transactions("api_transactions.json")
     print(transactions[0])
     print(f"Total transactions: {len(transactions)}")
     print("✅ transactions loaded successfully")

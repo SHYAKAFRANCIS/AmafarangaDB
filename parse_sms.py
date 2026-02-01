@@ -34,7 +34,7 @@ if __name__ == "__main__":
     print(json.dumps(data, indent=2))
 
     # Save JSON file
-    with open("transactions.json", "w", encoding="utf-8") as f:
+    with open("api_transactions.json", "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
     print("✅ XML successfully converted to JSON")

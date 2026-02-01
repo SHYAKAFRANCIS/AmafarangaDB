@@ -47,7 +47,7 @@ def transform_sms_to_transactions(raw_sms):
 
 
 if __name__ == "__main__":
-    with open("transactions.json", "r", encoding="utf-8") as f:
+    with open("api_transactions.json", "r", encoding="utf-8") as f:
         raw_sms = json.load(f)
 
     api_transactions = transform_sms_to_transactions(raw_sms)
