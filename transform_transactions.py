@@ -123,7 +123,7 @@ def parse_timestamp(readable_date):
         return None
     
     try:
-        # "10 May 2024 4:30:58 PM"
+        # "10 May 2024 4:30:58 PM" 
         dt = datetime.strptime(readable_date, "%d %b %Y %I:%M:%S %p")
         return dt.isoformat()
     except ValueError:
