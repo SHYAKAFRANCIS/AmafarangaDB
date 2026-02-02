@@ -7,7 +7,7 @@ from auth import check_auth
 
 def load_transactions():
     """Load the transactionns from the json file."""
-    with open("api_transactions.json", "r", encoding="utf-8") as file:
+    with open("api_ready_transactions.json", "r", encoding="utf-8") as file:
         TRANSACTIONS = json.load(file)
     return TRANSACTIONS
 
@@ -17,7 +17,7 @@ class resourceHandler(BaseHTTPRequestHandler):
 
     def send_json(self, status_code, data=None):
         self.send_response(status_code)
-        self.send_header("content_type", "application/json")
+        self.send_header("Content-transaction_type", "application/json")
         self.end_headers()
 
         if data is not None:
@@ -45,7 +45,7 @@ class resourceHandler(BaseHTTPRequestHandler):
         
         results = load_transactions()
 
-        for key in ["type", "amount", "sender", "receiver", "timestamp"]:
+        for key in ["transaction_type", "amount", "sender", "receiver", "timestamp"]:
             if key in query_params:
                 value = query_params[key][0]
                 results = [
@@ -63,11 +63,11 @@ class resourceHandler(BaseHTTPRequestHandler):
             return
         
         if self.path != "/transactions":
-            self.send_respone(404)
+            self.send_response(404)
             self.end_headers()
             return
         
-        content_length = int(self.headers.get("content-length", 0))
+        content_length = int(self.headers.get("Content-Length", 0))
         body = self.rfile.read(content_length)
 
         try: 
@@ -77,7 +77,7 @@ class resourceHandler(BaseHTTPRequestHandler):
             self.end_headers()
             return
 
-        required_fields = ["type", "amount", "sender", "receiver", "timestamp"]
+        required_fields = ["transaction_type", "amount", "sender", "receiver", "timestamp"]
         for field in required_fields:
             if field not in data:
                 self.send_response(400)
@@ -87,7 +87,7 @@ class resourceHandler(BaseHTTPRequestHandler):
         transactions = load_transactions()
         transactions.append(data)
 
-        with open("api_transactions.json", "w", encoding="utf-8") as file:
+        with open("api_ready_transactions.json", "w", encoding="utf-8") as file:
             json.dump(transactions, file, indent=4)
         
         self.send_json(201, data)
@@ -114,7 +114,7 @@ class resourceHandler(BaseHTTPRequestHandler):
             self.end_headers()
             return
     
-        content_length = int(self.headers.get("Content_length", 0))
+        content_length = int(self.headers.get("Content-Length", 0))
         body = self.rfile.read(content_length)
 
         try:
@@ -146,7 +146,7 @@ class resourceHandler(BaseHTTPRequestHandler):
         
         #save it back to file
     
-        with open("api_transactions.json", "w", encoding="utf-8") as file:
+        with open("api_ready_transactions.json", "w", encoding="utf-8") as file:
             json.dump(transactions, file, indent=4)
 
         self.send_json(200, transactions[tx_id])
@@ -184,7 +184,7 @@ class resourceHandler(BaseHTTPRequestHandler):
             return
         deleted_tx = transactions.pop(tx_id)
 
-        with open("api_transactions.json", "w", encoding="utf-8") as file:
+        with open("api_ready_transactions.json", "w", encoding="utf-8") as file:
             json.dump(transactions, file, indent=4)
 
         self.send_json(200, deleted_tx)
