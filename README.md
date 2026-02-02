@@ -13,3 +13,4 @@ This is a layered system architecture for AMAFARANGA DATABASE that shows how use
 Here is the link to the team sheet that tracks the collaboration on this project : https://docs.google.com/spreadsheets/d/1Nn7axOub_srAbhR_4dG9ylsXlkstVROlOe4p1SZ70R4/edit?gid=0#gid=0
 
 The sheet Team attendants for the second task, which is BUILDING AND SECURING A REST API: https://docs.google.com/spreadsheets/d/1oyffL8CKBQm1KgpFhHXjqIPKVIwPrqrF2k4gMlWqq78/edit?usp=sharing
+Here is the link to our pdf REST API report https://github.com/SHYAKAFRANCIS/AmafarangaDB/blob/main/Docs/Building%20And%20Securing%20A%20REST%20API.pdf
