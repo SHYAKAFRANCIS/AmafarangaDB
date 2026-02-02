@@ -8,8 +8,9 @@ def parse_sms_xml(xml_file):
     root = tree.getroot()
     transactions = []
     
-    for sms in root.findall("sms"):
+    for i, sms in enumerate(root.findall("sms")):
         transaction = {
+            "id": i,
             "protocol": sms.attrib.get("protocol"),
             "address": sms.attrib.get("address"),
             "date": sms.attrib.get("date"),
