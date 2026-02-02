@@ -14,7 +14,7 @@
         "Sender_id": 1,
         "Receiver_id": 2,
         "Amount": 50000.00,
-        "Transaction_type": "2025-01-15T10:30:00Z",
+        "Transaction_transaction_type": "2025-01-15T10:30:00Z",
         "Transaction_status": "COMPLETED",
         "receiver": {
           "User_id": 2,
@@ -32,9 +32,9 @@
             "transaction_fee_id": 1,
             "fee_amount": 1000.00,
             "applied_at": "2025-01-15T10:30:00Z",
-            "fee_type": {
-              "fee_type_id": 1,
-              "type_name": "Processing Fee",
+            "fee_transaction_type": {
+              "fee_transaction_type_id": 1,
+              "transaction_type_name": "Processing Fee",
               "fee_percentage": 2.00,
               "fixed_amount": 0.00,
               "min_fee": 100.00,
@@ -46,9 +46,9 @@
             "transaction_fee_id": 2,
             "fee_amount": 50.00,
             "applied_at": "2025-01-15T10:30:00Z",
-            "fee_type": {
-              "fee_type_id": 2,
-              "type_name": "Platform Fee",
+            "fee_transaction_type": {
+              "fee_transaction_type_id": 2,
+              "transaction_type_name": "Platform Fee",
               "fee_percentage": 0.00,
               "fixed_amount": 50.00,
               "min_fee": 50.00,
@@ -85,7 +85,7 @@
         "Sender_id": 4,
         "Receiver_id": 1,
         "Amount": 15000.00,
-        "Transaction_type": "2025-01-18T16:20:00Z",
+        "Transaction_transaction_type": "2025-01-18T16:20:00Z",
         "Transaction_status": "PENDING",
         "sender": {
           "User_id": 4,
@@ -103,9 +103,9 @@
             "transaction_fee_id": 4,
             "fee_amount": 300.00,
             "applied_at": "2025-01-18T16:20:00Z",
-            "fee_type": {
-              "fee_type_id": 1,
-              "type_name": "Processing Fee",
+            "fee_transaction_type": {
+              "fee_transaction_type_id": 1,
+              "transaction_type_name": "Processing Fee",
               "fee_percentage": 2.00,
               "fixed_amount": 0.00,
               "min_fee": 100.00,

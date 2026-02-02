@@ -20,9 +20,9 @@ CREATE TABLE CATEGORIES (
     Category_name VARCHAR(100),
     Description TEXT
 );
-CREATE TABLE FEE_TYPES (
-    fee_type_id INT PRIMARY KEY AUTO_INCREMENT,
-    type_name VARCHAR(50),
+CREATE TABLE FEE_transaction_typeS (
+    fee_transaction_type_id INT PRIMARY KEY AUTO_INCREMENT,
+    transaction_type_name VARCHAR(50),
     fee_percentage DECIMAL(5,2) DEFAULT 0.21,
     fixed_amount DECIMAL(15,2),
     min_fee DECIMAL(10,2),
@@ -35,7 +35,7 @@ CREATE TABLE TRANSACTIONS (
     Receiver_id INT NOT NULL,
     Category_id INT NOT NULL,
     Amount DECIMAL(15,2) NOT NULL,
-    Transaction_type TIMESTAMP NOT NULL,
+    Transaction_transaction_type TIMESTAMP NOT NULL,
     Transaction_status VARCHAR(20) DEFAULT 'ACTIVE',
 
     FOREIGN KEY (Sender_id) REFERENCES USERS(User_id),
@@ -66,12 +66,12 @@ CREATE TABLE USER_TRANSACTIONS (
 CREATE TABLE TRANSACTION_FEES (
     transaction_fee_id INT PRIMARY KEY AUTO_INCREMENT,
     transaction_id INT NOT NULL,
-    fee_type_id INT NOT NULL,
+    fee_transaction_type_id INT NOT NULL,
     fee_amount DECIMAL(10,2),
     applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
     FOREIGN KEY (transaction_id) REFERENCES TRANSACTIONS(Transaction_id),
-    FOREIGN KEY (fee_type_id) REFERENCES FEE_TYPES(fee_type_id)
+    FOREIGN KEY (fee_transaction_type_id) REFERENCES FEE_transaction_typeS(fee_transaction_type_id)
 );
 INSERT INTO USERS (Phone_number, Full_name, Email, Registration_date, Status) VALUES
 ('+250788123456', 'Keza Meghan', 'keza.meg@gmail.com', '2024-01-15', 'ACTIVE'),
@@ -93,7 +93,7 @@ INSERT INTO CATEGORIES (Category_name, Description) VALUES
 ('School Fees', 'School fee payments'),
 ('Donation', 'Charitable donations');
 
-INSERT INTO FEE_TYPES (type_name, fee_percentage, fixed_amount, min_fee, max_fee, is_active) VALUES
+INSERT INTO FEE_transaction_typeS (transaction_type_name, fee_percentage, fixed_amount, min_fee, max_fee, is_active) VALUES
 ('Processing Fee', 2.00, 0.00, 100.00, 5000.00, TRUE),
 ('Platform Fee', 0.00, 50.00, 50.00, 50.00, TRUE),
 ('International Transfer Fee', 3.50, 0.00, 500.00, 10000.00, TRUE),
@@ -101,7 +101,7 @@ INSERT INTO FEE_TYPES (type_name, fee_percentage, fixed_amount, min_fee, max_fee
 ('ATM Withdrawal Fee', 0.00, 300.00, 300.00, 300.00, TRUE),
 ('Premium Service Fee', 0.50, 100.00, 100.00, 2000.00, FALSE);
 
-INSERT INTO TRANSACTIONS (Sender_id, Receiver_id, Category_id, Amount, Transaction_type, Transaction_status) VALUES
+INSERT INTO TRANSACTIONS (Sender_id, Receiver_id, Category_id, Amount, Transaction_transaction_type, Transaction_status) VALUES
 (1, 2, 1, 50000.00, '2025-01-15 10:30:00', 'COMPLETED'),
 (2, 3, 2, 25000.00, '2025-01-16 14:45:00', 'COMPLETED'),
 (3, 4, 1, 100000.00, '2025-01-17 09:15:00', 'COMPLETED'),
@@ -127,7 +127,7 @@ INSERT INTO SYSTEM_LOGS (transaction_id, Actor, Status_message) VALUES
 (5, 'Aunty Meg', 'Withdrawal request submitted'),
 (5, 'System', 'Transaction completed');
 
-INSERT INTO TRANSACTION_FEES (transaction_id, fee_type_id, fee_amount) VALUES
+INSERT INTO TRANSACTION_FEES (transaction_id, fee_transaction_type_id, fee_amount) VALUES
 -- Transaction 1 fees
 (1, 1, 1000.00),  -- Processing fee (2% of 50000)
 (1, 2, 50.00),    -- Platform fee
