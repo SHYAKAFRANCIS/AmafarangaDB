@@ -4,6 +4,7 @@ from urllib.parse import parse_qs, urlparse
 
 from auth import check_auth
 from pathlib import Path
+from indexer import TransactionIndex, TransactionManager
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_FILE = BASE_DIR / "api_ready_transactions.json"
@@ -20,6 +21,9 @@ def load_transactions():
     
 class resourceHandler(BaseHTTPRequestHandler):
     """ handles the http requests for our transaction resource. """
+    
+    # DSA: Maintain transaction index for O(1) lookups
+    index = None  # Initialized at server startup
 
     def send_json(self, http_code, status="success", data=None, message=""):
         self.send_response(http_code)
@@ -85,13 +89,12 @@ class resourceHandler(BaseHTTPRequestHandler):
             self.end_headers()
             return
 
-        for key in ["transaction_type", "amount", "sender", "receiver", "timestamp"]:
+        # DSA: Use hash map index for O(1) lookups instead of O(n) linear scan
+        for key in ["transaction_type", "sender", "receiver"]:
             if key in query_params:
                 value = query_params[key][0]
-                results = [
-                    tx for tx in results
-                    if str(tx.get(key)) == value
-                ]
+                # O(1) average case lookup via hash map
+                results = self.index.search_by_field(key, value)
 
         self.send_json(200, "success", results, f"Retrieved {len(results)} transaction(s)")
     
@@ -125,10 +128,18 @@ class resourceHandler(BaseHTTPRequestHandler):
                 return
             
         transactions = load_transactions()
+        
+        # DSA: Auto-assign next available ID
+        next_id = TransactionManager.get_next_id(transactions)
+        data["id"] = next_id
+        
         transactions.append(data)
 
         with open(DATA_FILE, "w", encoding="utf-8") as file:
             json.dump(transactions, file, indent=4)
+        
+        # Rebuild index for consistency
+        resourceHandler.index.rebuild(transactions)
         
         self.send_json(201, "success", data, "Transaction created")
 
@@ -188,6 +199,9 @@ class resourceHandler(BaseHTTPRequestHandler):
     
         with open(DATA_FILE, "w", encoding="utf-8") as file:
             json.dump(transactions, file, indent=4)
+        
+        # Rebuild index for consistency
+        resourceHandler.index.rebuild(transactions)
 
         self.send_json(200, "success", transactions[tx_id], "Transaction updated")
 
@@ -226,6 +240,9 @@ class resourceHandler(BaseHTTPRequestHandler):
 
         with open(DATA_FILE, "w", encoding="utf-8") as file:
             json.dump(transactions, file, indent=4)
+        
+        # Rebuild index for consistency
+        resourceHandler.index.rebuild(transactions)
 
         self.send_json(200, "success", deleted_tx, "Transaction deleted")
         
@@ -233,6 +250,15 @@ class resourceHandler(BaseHTTPRequestHandler):
         
 def run():
     """ run the server """ 
+    # DSA: Initialize transaction index at server startup
+    try:
+        transactions = load_transactions()
+        resourceHandler.index = TransactionIndex(transactions)
+        print(f"Index initialized with {len(transactions)} transactions")
+    except FileNotFoundError:
+        print("Warning: Data file not found. Index will be initialized on first request.")
+        resourceHandler.index = TransactionIndex([])
+    
     server_address = ("", 8000)
     httpd = HTTPServer(server_address, resourceHandler)
     print("Starting server on port 8000...")
