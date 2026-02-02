@@ -14,3 +14,68 @@ Here is the link to the team sheet that tracks the collaboration on this project
 
 The sheet Team attendants for the second task, which is BUILDING AND SECURING A REST API: https://docs.google.com/spreadsheets/d/1oyffL8CKBQm1KgpFhHXjqIPKVIwPrqrF2k4gMlWqq78/edit?usp=sharing
 Here is the link to our pdf REST API report https://github.com/SHYAKAFRANCIS/AmafarangaDB/blob/main/Docs/Building%20And%20Securing%20A%20REST%20API.pdf
+
+# Transaction API Server
+
+A Python REST API for managing financial transactions with efficient hash map indexing.
+
+## Quick Start
+
+1. **Create data file** `api_ready_transactions.json` in parent directory:
+```json
+[]
+```
+
+2. **Run server:**
+```bash
+cd src
+python app.py
+```
+
+Server runs on `http://localhost:8000`
+
+## Authentication
+- Username: `admin`
+- Password: `password`
+
+## API Endpoints
+
+```bash
+# List all transactions
+curl -u admin:password http://localhost:8000/transactions
+
+# Get transaction by ID
+curl -u admin:password http://localhost:8000/transactions/0
+
+# Create transaction
+curl -u admin:password -X POST http://localhost:8000/transactions \
+  -H "Content-Type: application/json" \
+  -d '{"transaction_type":"payment","amount":100,"sender":"Alice","receiver":"Bob","timestamp":"2024-01-01T10:00:00Z"}'
+
+# Update transaction
+curl -u admin:password -X PUT http://localhost:8000/transactions/0 \
+  -H "Content-Type: application/json" \
+  -d '{"amount":150}'
+
+# Delete transaction
+curl -u admin:password -X DELETE http://localhost:8000/transactions/0
+
+# Filter by field
+curl -u admin:password "http://localhost:8000/transactions?sender=Alice"
+```
+
+## Project Structure
+```
+project/
+├── src/
+│   ├── app.py
+│   ├── auth.py
+│   └── indexer.py
+└── api_ready_transactions.json
+```
+
+## Features
+- O(1) lookups via hash map indexing
+- Basic HTTP authentication
+- RESTful CRUD operations
+- Query filtering by sender, receiver, transaction_type
