@@ -1,4 +1,4 @@
-CREATE DATABASE tricode_db;
+CREATE DATABASE IF NOT EXISTS tricode_db;
 use tricode_db;
 
 CREATE TABLE USERS (
